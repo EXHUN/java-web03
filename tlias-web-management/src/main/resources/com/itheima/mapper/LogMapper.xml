@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.LogMapper">
+    <select id="list" resultType="com.itheima.pojo.OperateLog">
+        SELECT
+            ol.id,
+            ol.operate_emp_id AS operateEmpId,
+            ol.operate_time AS operateTime,
+            ol.class_name AS className,
+            ol.method_name AS methodName,
+            ol.method_params AS methodParams,
+            ol.return_value AS returnValue,
+            ol.cost_time AS costTime,
+            e.name AS operateEmpName
+        FROM
+            operate_log ol
+                LEFT JOIN
+            emp e
+            ON
+                ol.operate_emp_id = e.id
+        ORDER BY ol.operate_time DESC
+    </select>
+</mapper>
