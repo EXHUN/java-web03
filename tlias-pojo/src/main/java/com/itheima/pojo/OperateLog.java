@@ -15,4 +15,6 @@ public class OperateLog {
     private String returnValue; //操作方法返回值
     private Long costTime; //操作耗时
     private String operateEmpName;//操作人姓名
+    private Integer page = 1; //页码
+    private Integer pageSize = 10; //每页展示记录数
 }

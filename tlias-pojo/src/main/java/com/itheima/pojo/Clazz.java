@@ -17,7 +17,7 @@ public class Clazz {
     private LocalDate beginDate; //开课日期
     private LocalDate endDate; //结课日期
     private Integer masterId; //班主任ID
-    private Integer subject; //学科
+    private String subject; //学科
     private LocalDateTime createTime; //创建时间
     private LocalDateTime updateTime; //修改时间
 

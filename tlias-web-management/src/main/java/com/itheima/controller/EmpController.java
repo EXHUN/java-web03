@@ -106,4 +106,26 @@ public class EmpController {
         List<Emp> empList = empService.findAll();
         return Result.success(empList);
     }
+
+    /**
+     * 修改密码接口
+     */
+    @PostMapping("/updatePwd")
+    public Result updatePwd(@RequestBody java.util.Map<String, String> pwdMap) {
+        try {
+            Integer empId = com.itheima.utils.CurrentHolder.getCurrentId();
+            if (empId == null) {
+                return Result.error("未登录或登录已过期");
+            }
+            String oldPwd = pwdMap.get("oldPwd");
+            String newPwd = pwdMap.get("newPwd");
+            boolean success = empService.updatePwd(empId, oldPwd, newPwd);
+            if (!success) {
+                return Result.error("原始密码错误");
+            }
+            return Result.success("密码修改成功");
+        } catch (Exception e) {
+            return Result.error("密码修改失败");
+        }
+    }
 }

@@ -176,4 +176,10 @@ public class EmpServiceImpl implements EmpService {
         //3. 不存在，返回null
         return null;
     }
+
+    @Override
+    public boolean updatePwd(Integer id, String oldPwd, String newPwd) {
+        int count = empMapper.updatePwd(id, oldPwd, newPwd);
+        return count > 0;
+    }
 }

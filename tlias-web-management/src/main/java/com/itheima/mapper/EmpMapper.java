@@ -89,4 +89,14 @@ public interface EmpMapper {
      */
     @Select("select id, username,name from emp where username = #{username} and password = #{password}")
     Emp selectByUsernameAndPassword(Emp emp);
+
+    /**
+     * 修改密码
+     * @param id 当前登录员工id
+     * @param oldPwd 原密码
+     * @param newPwd 新密码
+     * @return 影响行数
+     */
+    @Update("update emp set password = #{newPwd}, update_time = now() where id = #{id} and password = #{oldPwd}")
+    int updatePwd(@Param("id") Integer id, @Param("oldPwd") String oldPwd, @Param("newPwd") String newPwd);
 }

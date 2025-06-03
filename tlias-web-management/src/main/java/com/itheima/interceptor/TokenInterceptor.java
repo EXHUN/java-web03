@@ -11,7 +11,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
  * 令牌校验拦截器
  */
 @Slf4j
-@Component
+// @Component
 public class TokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

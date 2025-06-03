@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 @Slf4j
-@Component
+// @Component
 public class DemoInterceptor implements HandlerInterceptor {
     @Override
     //目标资源方法运行之前运行 - 返回值：true 放行，false 拦截

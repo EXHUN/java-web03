@@ -26,8 +26,20 @@ public class TokenFilter implements Filter {
             filterChain.doFilter(request, response);
             return;
         }
-        //3.获取请求头中的token
-        String token = request.getHeader("token");
+        //3.优先从 Authorization 头获取 token，支持 Bearer 前缀
+        String token = null;
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader != null && !authHeader.isEmpty()) {
+            if (authHeader.toLowerCase().startsWith("bearer ")) {
+                token = authHeader.substring(7).trim();
+            } else {
+                token = authHeader.trim();
+            }
+        }
+        // 如果 Authorization 没有，再尝试从 token 字段获取（兼容旧逻辑）
+        if ((token == null || token.isEmpty())) {
+            token = request.getHeader("token");
+        }
         //4.判断token是否存在，如果不存在，说明未登录，返回错误信息(响应401状态码)
         if (token == null || token.isEmpty()) {
             log.info("令牌为空，响应401");
